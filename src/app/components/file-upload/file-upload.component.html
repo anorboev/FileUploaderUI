@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="alert alert-primary" role="alert" *ngIf="uploadSuccess">
+        File Uploaded!
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="uploadFailed">
+        {{uploadException}}
+    </div>
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+        <!-- Progress Bar -->
+        <div class="progress form-group" *ngIf="progress > 0">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+            </div>
+        </div>
+        <div class="form-group input-group-lg">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input form-control" id="inputGroupFile01"
+                    (change)="uploadFile($event)">
+                <label class="custom-file-label" for="inputGroupFile01">{{fileName}}</label>
+            </div>
+            <div *ngIf="file.invalid && (file.dirty || file.touched)" class="alert alert-danger col-md-12">
+                <div *ngIf="file.errors.required">
+                    File is required.
+                </div>
+                <div *ngIf="file.errors.fileSizeValidator">
+                    Maximum allowed file size is {{fileValidation.allowedFileSize}}MB
+                </div>
+                <div *ngIf="file.errors.fileTypeValidator">
+                    Invalid file extension
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group input-group-lg">
+            <input class="form-control" placeholder="Name" formControlName="name">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+                <div *ngIf="name.errors.maxlength">
+                    Max length of name should be 50.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-danger btn-block btn-lg">Create</button>
+        </div>
+    </form>
+</div>

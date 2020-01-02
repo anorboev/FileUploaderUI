@@ -1,0 +1,21 @@
+<nav *ngIf="pages.length > 1">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous" (click)="!!pageChange(active - 1)" [class.disabled]="active == 1">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item" *ngFor="let number of pages">
+            <a class="page-link disabled" href="#" (click)="!!pageChange(number)" [class.disabled]="active == number">
+                {{number}}
+            </a>
+        </li>
+        <li class="page-item">
+            <a disabled class="page-link" href="#" aria-label="Next" (click)="!!pageChange(active + 1)" [class.disabled]="active == pages.length">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

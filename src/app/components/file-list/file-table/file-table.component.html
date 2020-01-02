@@ -1,0 +1,23 @@
+<table class="table pdf">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Size</th>            
+            <th scope="col">Uploaded By</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of fileListForPage; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.size}}KB</td>
+            <td>{{item.createdBy}}</td>
+            <td>{{item.created}}</td>
+            <td><a class="btn btn-success" href="{{downloadUrl + item.fileId}}">Download</a></td>
+        </tr>
+    </tbody>
+</table>
+<app-table-paginator [listSize]="fileList.length" (change)="changePage($event)"></app-table-paginator>

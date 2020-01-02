@@ -1,0 +1,7 @@
+<div class="flex-container">
+    <div *ngFor="let group of fileListGrouped">
+        <app-file-table [fileType]="group[0]" [fileList]="group[1]"></app-file-table>
+    </div>
+
+    
+</div>
